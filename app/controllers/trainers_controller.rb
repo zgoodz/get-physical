@@ -1,11 +1,17 @@
 class TrainersController < ApplicationController
+    skip_before_action :authorize, only: :create
 
     def index
         render json: Trainer.all
     end
 
+    def show
+        render json: @current_user, status: :ok
+    end
+
     def create
         trainer = Trainer.create!(trainer_params)
+        session[:trainer_id] = trainer.id
         render json: trainer, status: :created
     end
 
@@ -20,5 +26,5 @@ class TrainersController < ApplicationController
     def trainer_params
         params.permit(:name, :location, :bio, :profile_img, :taking_new_clients, :password, :password_confirmation)
     end
-    
+
 end

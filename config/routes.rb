@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :trainers
   resources :clients
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get "/hello", to: "application#hello_world"
+  get "/me", to: "users#show"
+  post "/login_member", to: "sessions#create_member"
+  post "/login_trainer", to: "sessions#create_trainer"
+  delete "/logout_member", to: "session#destroy_member"
+  delete "/logout_trainer", to: "session#destroy_trainer"
+
 
   
 

@@ -1,29 +1,81 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom"
+import Trainer from './Components/Trainer'
+import Member from './Components/Member'
+import Home from './Components/Home'
+import Login from './Components/Login'
+import Register from './Components/Register'
 
 function App() {
-  const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+
+  // useEffect( () => {
+  //   // auto-login
+  //   fetch("/me_member").then((r) => {
+  //     if (r.ok) {
+  //       r.json().then((user) => {
+
+  //         setMember(user)
+  //       });
+  //     }
+  //   });
+
+    // fetch("/me_trainer").then((r) => {
+    //   if (r.ok) {
+    //     r.json().then((user) => {
+
+    //       setTrainer(user)
+    //     });
+    //   }
+    // });
+  // }, []);
+
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
-          </Route>
-          <Route path="/">
-            <h1>Page Count: {count}</h1>
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
+    <div>
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    </div>
+  )
 }
 
-export default App;
+export default App
+
+//   if (trainer) {
+//     return(
+//       <BrowserRouter>
+//         <Switch>
+//           <Route exact path = "/trainer">
+//             <Trainer/>
+//           </Route>
+//         </Switch>
+//       </BrowserRouter>
+//     )
+//   } else if (member) {
+//     return(
+//       <BrowserRouter>
+//         <Switch>
+//           <Route exact path = "/member">
+//             <Member/>
+//           </Route>
+//         </Switch>
+//       </BrowserRouter>
+//     )
+//   } else {
+//     return(
+//       <BrowserRouter>
+//         <Switch>
+//           <Route exact path = "/">
+//             <Home/>
+//           </Route>
+//           <Route path = "/login">
+//             <Login setMember={setMember} setTrainer={setTrainer}/>
+//           </Route>
+//           <Route path = "/register">
+//             <Register/>
+//           </Route>
+//         </Switch>
+//       </BrowserRouter>
+//     )
+//   }
