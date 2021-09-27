@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   post "/login_member", to: "sessions#create_member"
   post "/login_trainer", to: "sessions#create_trainer"
-  delete "/logout_member", to: "session#destroy_member"
-  delete "/logout_trainer", to: "session#destroy_trainer"
+  delete "/logout_member", to: "sessions#destroy_member"
+  delete "/logout_trainer", to: "sessions#destroy_trainer"
 
 
   

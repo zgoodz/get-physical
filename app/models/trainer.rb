@@ -6,7 +6,6 @@ class Trainer < ApplicationRecord
     has_many :appointments
 
     validates :name, presence: true
-    validates :location, presence: true
     validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
     validates :user_type, presence: true
 end

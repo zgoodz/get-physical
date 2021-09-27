@@ -24,7 +24,7 @@ class TrainersController < ApplicationController
     private
 
     def trainer_params
-        params.permit(:name, :location, :bio, :profile_img, :taking_new_clients, :password, :password_confirmation)
+        params.permit(:name, :email, :user_type, :location, :bio, :profile_img, :taking_new_clients, :password, :password_confirmation)
     end
 
 end

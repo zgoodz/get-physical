@@ -19,10 +19,9 @@ export default function Home() {
         fetch('/me')
         .then(r =>r.json())
         .then(data => {
-            console.log(data.user_type)
-            if (data.user_type === "trainer") {
+            if (data && data.user_type === "trainer") {
                 setTrainer(data)
-            } else if (data.user_type === "client") {
+            } else if (data && data.user_type === "client") {
                 setMember(data)
             }
         })
@@ -47,7 +46,7 @@ export default function Home() {
             <NavBar />
             <Switch>
                 <Route exact path = '/'>
-                    {member ? <Member/> : <Trainer/>}
+                    {member ? <Member setMember={setMember}/> : <Trainer setTrainer={setTrainer}/>}
                 </Route>
                 <Route path = '/exercises'>
                     <Exercises exercises={exercises} memeber={member} trainer={trainer}/>
