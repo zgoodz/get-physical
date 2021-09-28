@@ -1,7 +1,8 @@
 class ExercisesController < ApplicationController
+    skip_before_action :authorize, only: :index
 
     def index
-        render json: Exercise.all
+        render json: Exercise.order(:id)
     end
 
     def show
@@ -23,7 +24,7 @@ class ExercisesController < ApplicationController
     def destroy
         exercise = Exercise.find_by(id: params[:id])
         exercise.destroy
-        head :no_content
+        render json: Exercise.all
     end
 
     private

@@ -12,8 +12,8 @@ import Appointments from './Appointments'
 export default function Home() {
     const [member, setMember] = useState(null)
     const [trainer, setTrainer] = useState(null)
-    const [exercises, setExercises] = useState({})
-    const [classes, setClasses] = useState({})
+    const [exercises, setExercises] = useState([])
+    const [classes, setClasses] = useState([])
 
     useEffect(() => {
         fetch('/me')
@@ -46,7 +46,9 @@ export default function Home() {
             <NavBar />
             <Switch>
                 <Route exact path = '/'>
-                    {member ? <Member setMember={setMember}/> : <Trainer setTrainer={setTrainer}/>}
+                    {member ? <Member member={member} setMember={setMember}/> 
+                        : <Trainer classes={classes} setClasses={setClasses} exercises={exercises} setExercises={setExercises} trainer={trainer} setTrainer={setTrainer}/>
+                    }
                 </Route>
                 <Route path = '/exercises'>
                     <Exercises exercises={exercises} memeber={member} trainer={trainer}/>
