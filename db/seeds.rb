@@ -9,7 +9,7 @@
 puts "Seeding Trainers..."
 
 Trainer.create(name: Faker::Name.unique.name, email: "faketrainer@gmail.com", location: "Upper East Side, NYC", bio: "I pick things up and I put them down.", profile_img: "https://www.texasfamilyfitness.com/hs-fs/hubfs/personal%20trainer%20featured.jpg?width=600&name=personal%20trainer%20featured.jpg", taking_new_clients: true, user_type: "trainer", password: "1234")
-Trainer.create(name: Faker::Name.unique.name, email: "johnapple@gmail.com", location: "Gramercy, NYC", bio: "When people get buff, I am get happy.", profile_img: "https://upload.wikimedia.org/wikipedia/commons/0/05/Arnold_Schwarzenegger_1974.jpg", taking_new_clients: false, user_type: "trainer", password: "1234")
+Trainer.create(name: Faker::Name.unique.name, email: "johnapple@gmail.com", location: "Gramercy, NYC", bio: "When people get buff, I am get happy.", profile_img: "https://upload.wikimedia.org/wikipedia/commons/0/05/Arnold_Schwarzenegger_1974.jpg", taking_new_clients: true, user_type: "trainer", password: "1234")
 
 puts "Seeding Clients..."
 

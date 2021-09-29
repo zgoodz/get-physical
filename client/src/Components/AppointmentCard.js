@@ -1,11 +1,14 @@
-export default function AppointmentCard({ appointment }) {
+export default function AppointmentCard({ appointment, member }) {
 
     return(
         <div>
-            <h1>{appointment.trainer.name}</h1>
-            <h2>{appointment.location}</h2>
-            <h2>Level: {appointment.level}</h2>
-            <h2>(time will go here)</h2>
+            <h2>{appointment.trainer.name}</h2>
+            <ul>
+                <li>Location: {appointment.location}</li>
+                <li>Class level: {appointment.level}</li>
+                <li>Duration: {appointment.duration} mins</li>
+            </ul>
+            {member ? <button>Add to Schedule</button> : <></>}
         </div>
     )
 }

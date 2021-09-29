@@ -2,7 +2,7 @@ class ExercisesController < ApplicationController
     skip_before_action :authorize, only: :index
 
     def index
-        render json: Exercise.order(:id)
+        render json: Exercise.order(:trainer_id)
     end
 
     def show
@@ -12,13 +12,13 @@ class ExercisesController < ApplicationController
 
     def create
         exercise = Exercise.create!(exercise_params)
-        render json: exercise, status: :created
+        render json: Exercise.order(:trainer_id), status: :created
     end
 
     def update
         exercise = Exercise.find_by(id: params[:id])
         exercise.update!(exercise_params)
-        render json: exercise, status: :accepted
+        render json: Exercise.all.order(:id), status: :accepted
     end
 
     def destroy

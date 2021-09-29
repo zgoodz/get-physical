@@ -6,19 +6,19 @@ class AppointmentsController < ApplicationController
 
     def create
         appointment = Appointment.create!(appointment_params)
-        render json: appointment, status: :created
+        render json: Appointment.order(:trainer_id), status: :created
     end
 
     def update
         appointment = Appointment.find_by(id: params[:id])
         appointment.update!(appointment_params)
-        render json: appointment, status: :accepted
+        render json: Appointment.order(:trainer_id), status: :accepted
     end
 
     def destroy
         appointment = Appointment.find_by(id: params[:id])
         appointment.destroy
-        head :no_content
+        render json: Appointment.all
     end
 
     private

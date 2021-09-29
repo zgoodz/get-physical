@@ -1,16 +1,16 @@
 class ReviewRatingsController < ApplicationController
 
     def index
-        render json: Review.all
+        render json: ReviewRating.all
     end
     
     def create
-        review = Review.create!(review_params)
-        render json: review, status: :created
+        review = ReviewRating.create!(review_params)
+        render json: Trainer.all, status: :created
     end
 
     def destroy
-        review = Review.find_by(id: params[:id])
+        review = ReviewRating.find_by(id: params[:id])
         review.destroy
         head :no_content
     end

@@ -1,21 +1,22 @@
 import { useState } from "react"
 
-export default function ExerciseTrainerCard({ exercise, setExercises }) {
+export default function AppointmentTrainerCard({ c, setClasses}) {
     const [editMode, setEditMode] = useState(false)
     const [editData, setEditData] = useState({
-        description: exercise.description,
-        difficulty: exercise.difficulty
+        location: c.location,
+        level: c.level,
+        duration: c.duration
     })
 
     async function handleDelete(id) {
-        await fetch(`/exercises/${id}`, {
+        await fetch(`/appointments/${id}`, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json'
             }
         })
-        .then(r => r.json())
-        .then(data => setExercises(data))
+            .then(r => r.json())
+            .then(data => setClasses(data))
     }
 
     function handleEditMode() {
@@ -35,7 +36,7 @@ export default function ExerciseTrainerCard({ exercise, setExercises }) {
 
     function handleSubmit(e, id) {
         e.preventDefault()
-        fetch(`/exercises/${id}`, {
+        fetch(`/appointments/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -44,12 +45,13 @@ export default function ExerciseTrainerCard({ exercise, setExercises }) {
         })
             .then(response => response.json())
             .then(data => {
-                setExercises(data)
+                setClasses(data)
                 setEditMode(false)
             })
         setEditData({
-            description: exercise.description,
-            difficulty: exercise.difficulty
+            location: c.location,
+            level: c.level,
+            duration: c.duration
         })
     }
 
@@ -57,27 +59,28 @@ export default function ExerciseTrainerCard({ exercise, setExercises }) {
         <div>
             {editMode ? 
                 <>
-                    <h3 style={{ color: "red" }}>Edit Mode</h3> 
-                    <h3>{exercise.name}</h3>
-                    <form onSubmit={(e) => handleSubmit(e, exercise.id)}>
-                        <label>Description: </label>
-                        <textarea rows="5" cols="50" name="description" value={editData.description} onChange={handleChange} style={{ width: "250px", height: "100px" }} /><br />
-                        <label>Difficulty: </label>
-                        <input value={editData.difficulty} name="difficulty" onChange={handleChange}></input>
+                    <h3 style={{ color: "red" }}>Edit Mode</h3>
+                    <form onSubmit={(e) => handleSubmit(e, c.id)}>
+                        <label>Location: </label>
+                        <input type="text" name="location" value={editData.location} onChange={handleChange}></input>
+                        <label>Level: </label>
+                        <input type="text" name="level" value={editData.level} onChange={handleChange}></input>
+                        <label>Duration: </label>
+                        <input type="text" name="duration" value={editData.duration} onChange={handleChange}></input>
                         <button>Submit</button>
                     </form>
                     <button onClick={handleExitEdit}>Cancel</button>
                 </>
                 :
-                <>
-                    <h3>{exercise.name}</h3>
+                <div>
+                    <h3>{c.location}</h3>
                     <ul>
-                        <li>{exercise.description}</li>
-                        <li>Difficulty: {exercise.difficulty}</li>
+                        <li>Level: {c.level}</li>
+                        <li>Duration: {c.duration}</li>
                     </ul>
                     <button onClick={() => handleEditMode()}>Edit</button>
-                    <button onClick={() => handleDelete(exercise.id)}>Delete</button>
-                </>
+                    <button onClick={() => handleDelete(c.id)}>Delete</button>
+                </div>
             }
         </div>
     )

@@ -2,8 +2,6 @@ import { Switch, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Member from './Member'
 import Trainer from './Trainer'
-// import Register from './Register'
-// import Login from './Login'
 import LoginPage from './LoginPage'
 import NavBar from './NavBar'
 import Exercises from './Exercises'
@@ -51,10 +49,10 @@ export default function Home() {
                     }
                 </Route>
                 <Route path = '/exercises'>
-                    <Exercises exercises={exercises} memeber={member} trainer={trainer}/>
+                    <Exercises setExercises={setExercises} exercises={exercises} memeber={member} trainer={trainer}/>
                 </Route>
                 <Route path = '/classes'>
-                    <Appointments classes={classes}/>
+                    <Appointments classes={classes} setClasses={setClasses} trainer={trainer} member={member}/>
                 </Route>
             </Switch>
         </div>
