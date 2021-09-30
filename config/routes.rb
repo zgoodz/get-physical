@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :client_exercise_joins
   resources :appointments
   resources :exercises
   resources :review_ratings

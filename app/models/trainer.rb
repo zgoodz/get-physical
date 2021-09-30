@@ -10,8 +10,7 @@ class Trainer < ApplicationRecord
     validates :user_type, presence: true
 
     def average_rating
-        trainer = Trainer.find_by(id: params[:id])
-        ratings = trainer.review_ratings.map{ |obj| obj.rating }
+        ratings = self.review_ratings.map{ |obj| obj.rating }
         average = ratings.sum() / ratings.length.to_f
         return average.round(1)
     end

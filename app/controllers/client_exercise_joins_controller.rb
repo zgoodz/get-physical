@@ -1,0 +1,2 @@
+class ClientExerciseJoinsController < ApplicationController
+end
