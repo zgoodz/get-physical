@@ -24,16 +24,21 @@ export default function Member({ member, setMember }) {
         });
     }
 
+    //For filtering "available" trainers
     let filteredTrainers = showTrainers.filter(trainer => trainer.taking_new_clients === true)
 
     return(
         <div>
-            <h1>Member Page</h1>
+            <h1>My Profile</h1>
             <h2>My Bio:</h2>
             <h3>"{member.bio}"</h3>
+            <button>Edit Bio</button>
+            <h2>My Reservations:</h2>
+            <ul>
+                {member.appointments.map(appointment => <li>{appointment.location} at (insert Datetime here)</li>)}
+            </ul>
             <h2>Available Trainers</h2>
-            {/* map over filteredTrainers */}
-            {filteredTrainers.map(trainer => <TrainerCard key={trainer.id} setShowTrainers={setShowTrainers} member={member} trainer={trainer}/>)}
+            {showTrainers.map(trainer => <TrainerCard key={trainer.id} setShowTrainers={setShowTrainers} member={member} trainer={trainer}/>)}
             <button onClick={handleLogout}>Logout</button>
         </div>
     )

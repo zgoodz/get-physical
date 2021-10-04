@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_30_164059) do
+ActiveRecord::Schema.define(version: 2021_10_03_191917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,17 @@ ActiveRecord::Schema.define(version: 2021_09_30_164059) do
     t.bigint "trainer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "price"
     t.index ["trainer_id"], name: "index_appointments_on_trainer_id"
+  end
+
+  create_table "client_appointment_joins", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "appointment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["appointment_id"], name: "index_client_appointment_joins_on_appointment_id"
+    t.index ["client_id"], name: "index_client_appointment_joins_on_client_id"
   end
 
   create_table "client_exercise_joins", force: :cascade do |t|
@@ -83,6 +93,8 @@ ActiveRecord::Schema.define(version: 2021_09_30_164059) do
   end
 
   add_foreign_key "appointments", "trainers"
+  add_foreign_key "client_appointment_joins", "appointments"
+  add_foreign_key "client_appointment_joins", "clients"
   add_foreign_key "client_exercise_joins", "clients"
   add_foreign_key "client_exercise_joins", "exercises"
   add_foreign_key "exercises", "trainers"

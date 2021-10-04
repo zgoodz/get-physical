@@ -5,7 +5,8 @@ export default function AppointmentTrainerCard({ c, setClasses}) {
     const [editData, setEditData] = useState({
         location: c.location,
         level: c.level,
-        duration: c.duration
+        duration: c.duration,
+        cost: c.price
     })
 
     async function handleDelete(id) {
@@ -64,9 +65,17 @@ export default function AppointmentTrainerCard({ c, setClasses}) {
                         <label>Location: </label>
                         <input type="text" name="location" value={editData.location} onChange={handleChange}></input>
                         <label>Level: </label>
-                        <input type="text" name="level" value={editData.level} onChange={handleChange}></input>
+                        <select name="level" onChange={handleChange}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
                         <label>Duration: </label>
                         <input type="text" name="duration" value={editData.duration} onChange={handleChange}></input>
+                        <label>Cost: </label>
+                        <input type="text" name="cost" value={editData.cost} onChange={handleChange}></input>
                         <button>Submit</button>
                     </form>
                     <button onClick={handleExitEdit}>Cancel</button>

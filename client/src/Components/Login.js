@@ -56,7 +56,7 @@ export default function Login({ setMember, setTrainer }) {
                         alert(data.error)
                     } else {
                         setMember(data)
-                        history.push("/member")
+                        history.push("/home")
                     }
                 })
         } else if (trainerBtn) {
@@ -73,7 +73,7 @@ export default function Login({ setMember, setTrainer }) {
                         alert(data.error)
                     } else {
                         setTrainer(data)
-                        history.push("/trainer")
+                        history.push("/home")
                     }
                 })
         } else {

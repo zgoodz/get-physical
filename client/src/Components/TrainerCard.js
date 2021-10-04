@@ -38,7 +38,8 @@ export default function TrainerCard({ trainer, member, setShowTrainers }) {
 
     return(
         <div>
-            <h3>{trainer.name}</h3>
+            <h2>{trainer.name}</h2>
+            <h3>Average Rating: {trainer.average_rating}</h3>
             <ul>
                 {trainer.review_ratings.map(review => <li key={review.id}>{review.review}</li>)}
             </ul>
@@ -46,7 +47,13 @@ export default function TrainerCard({ trainer, member, setShowTrainers }) {
                 <>
                 <form onSubmit={handleSubmit}>
                     <label>Rating: </label>
-                    <input onChange={handleChange} name="rating"></input><br></br>
+                        <select name="rating" onChange={handleChange}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
                     <label>Review: </label>
                     <textarea rows="5" cols="50" name="review" onChange={handleChange}></textarea>
                     <button>Submit</button>

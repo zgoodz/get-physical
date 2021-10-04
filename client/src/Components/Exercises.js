@@ -1,7 +1,8 @@
 import ExerciseCard from "./ExerciseCard";
+import ExerciseTrainerCard from "./ExerciseTrainerCard";
 import { useState } from "react"
 
-export default function Exercises({ exercises, member, trainer, setExercises }) {
+export default function Exercises({ exercises, member, trainer, setExercises, setMember }) {
     const [addBtn, setAddBtn] = useState(false)
     const [newExercise, setNewExercise] = useState({
         name: '',
@@ -39,6 +40,13 @@ export default function Exercises({ exercises, member, trainer, setExercises }) 
             })
     }
 
+    let filteredExercises = []
+    if (trainer) {
+        filteredExercises = exercises.filter(exercise => exercise.trainer.id === trainer.id)
+    } else if (member) {
+        filteredExercises = exercises
+    }
+
 
     return(
         <div>
@@ -59,12 +67,11 @@ export default function Exercises({ exercises, member, trainer, setExercises }) 
                 :
                 <></>
             }
-            {exercises.length > 0 ? exercises.map(exercise => { 
-                return <ExerciseCard key={exercise.id} 
-                                    exercise={exercise} 
-                                    member={member} 
-                                    trainer={trainer}/> 
-                }) : <h3>Loading...</h3>}
+            {member ?
+                filteredExercises.length > 0 ? filteredExercises.map(exercise => { return <ExerciseCard key={exercise.id} exercise={exercise} setExercises={setExercises} setMember={setMember} member={member} /> }) : <h3>Loading...</h3>
+                :
+                filteredExercises.length > 0 ? filteredExercises.map(exercise => { return <ExerciseTrainerCard key={exercise.id} exercise={exercise} member={member} setMember={setMember} /> }) : <h3>Loading...</h3>
+            }
         </div>
     )
 }

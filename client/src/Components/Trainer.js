@@ -1,8 +1,6 @@
 import { useHistory } from "react-router";
-import AppointmentTrainerCard from "./AppointmentTrainerCard";
-import ExerciseTrainerCard from "./ExerciseTrainerCard";
 
-export default function Trainer({ setTrainer, trainer, exercises, setExercises, classes, setClasses }) {
+export default function Trainer({ setTrainer, trainer, exercises, classes }) {
     const history = useHistory()
 
     function handleLogout() {
@@ -27,14 +25,20 @@ export default function Trainer({ setTrainer, trainer, exercises, setExercises, 
         filteredClasses = classes.filter(e => e.trainer.id === trainer.id)
     }
      
+    console.log(trainer)
 
     return(
         <div>
-            <h1>Trainer Page</h1>
-            <h2>{trainer.name}'s Exercises</h2>
-            {filteredExercises.map(exercise => <ExerciseTrainerCard key={exercise.id} exercise={exercise} setExercises={setExercises}/>)}
-            <h2>{trainer.name}'s Upcoming Classes</h2>
-            {filteredClasses.map(c => <AppointmentTrainerCard key={c.id} c={c} setClasses={setClasses}/>)}
+            <h1>My Profile</h1>
+            <h2>Bio</h2>
+            <button>Edit Bio</button>
+            <h3>{trainer.bio}</h3>
+            <h2>Average Rating</h2>
+            <h3>{trainer.average_rating}</h3>
+            <h2>Reviews</h2>
+            <ul>
+                {trainer.review_ratings.map(review => <li>{review.review}</li>)}
+            </ul>
             <button onClick={handleLogout}>Logout</button>
         </div>
     )

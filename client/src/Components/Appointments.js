@@ -1,4 +1,5 @@
 import AppointmentCard from "./AppointmentCard"
+import AppointmentTrainerCard from "./AppointmentTrainerCard"
 import { useState } from "react"
 
 export default function Appointments({ classes, setClasses, trainer, member }) {
@@ -37,6 +38,13 @@ export default function Appointments({ classes, setClasses, trainer, member }) {
         })
     }
 
+    let filteredClasses = []
+    if (trainer) {
+        filteredClasses = classes.filter(c => c.trainer.id === trainer.id)
+    } else if (member) {
+        filteredClasses = classes
+    }
+
     return(
         <div>
             {trainer && !addBtn ? <button onClick={setClick}>Add Class</button> : <></>}
@@ -56,7 +64,12 @@ export default function Appointments({ classes, setClasses, trainer, member }) {
             : <></>
             }
             <h1>Upcoming Classes:</h1>
-            {classes.length > 0 ? classes.map(c => { return <AppointmentCard key={c.id} appointment={c} member={member} /> }) : <h3>Loading...</h3>}
+            { member ?
+            filteredClasses.length > 0 ? filteredClasses.map(c => { return <AppointmentCard key={c.id} appointment={c} setClasses={setClasses} member={member} /> }) : <h3>Loading...</h3>
+            :
+            filteredClasses.length > 0 ? filteredClasses.map(c => { return <AppointmentTrainerCard key={c.id} c={c} member={member} /> }) : <h3>Loading...</h3>
+            }
+            
         </div>
     )
 }
