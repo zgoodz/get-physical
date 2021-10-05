@@ -46,7 +46,7 @@ export default function Home() {
             {member ? <NavBarMember member={member}/> : <NavBarTrainer/>}
             <Switch>
                 <Route exact path = '/home'>
-                    {member ? <Member member={member} setMember={setMember}/> 
+                    {member ? <Member member={member} setMember={setMember} classes={classes}/> 
                         : <Trainer classes={classes} setClasses={setClasses} exercises={exercises} setExercises={setExercises} trainer={trainer} setTrainer={setTrainer}/>
                     }
                 </Route>

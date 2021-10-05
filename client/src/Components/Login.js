@@ -83,17 +83,22 @@ export default function Login({ setMember, setTrainer }) {
     
     return (
         <div>
-            <h1>Login as:</h1>
-            <button onClick={handleTrainerClick}>Trainer</button>
-            <button onClick={handleMemberClick}>Member</button>
-
-            <form onSubmit={handleSubmit}>
-                <label>Email:</label>
-                <input type="text" name="email" value={loginInfo.email} onChange={handleChange} ></input>
-                <label>Password:</label>
-                <input type="text" name="password" value={loginInfo.password} onChange={handleChange} ></input>
-                <button>Submit</button>
-            </form>
+            <h1>Pick one:</h1>
+            <div className="member-trainer-buttons-container">
+                <button className={memberBtn ? "member-trainer-button active" : "member-trainer-button"} onClick={handleMemberClick}>Member</button>
+                <button className={trainerBtn ? "member-trainer-button active" : "member-trainer-button"} onClick={handleTrainerClick}>Trainer</button>
+            </div>
+            <div className="form-container">
+                <form id="login-register" onSubmit={handleSubmit}>
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" value={loginInfo.email} onChange={handleChange} ></input>
+                    <br></br>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" value={loginInfo.password} onChange={handleChange} ></input>
+                    <br></br>
+                    <button className="submit-button">Submit</button>
+                </form>
+            </div>
         </div>
     )
 }

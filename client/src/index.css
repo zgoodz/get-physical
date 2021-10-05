@@ -1,13 +1,100 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color:#f9faf0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  text-align: center;
+}
+
+.welcome-logo {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  font-size: 80px;
+  color: #ad0909;
+}
+
+.login-buttons {
+  display: flex;
+  justify-content: center;
+
+}
+
+.member-trainer-button {
+  box-sizing: border-box;
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  background-color: transparent;
+  border: 2px solid #ad0909;
+  border-radius: 0.6em;
+  color: #ad0909;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.member-trainer-button:hover, .member-trainer-button:focus {
+  box-shadow: 0 0 40px 40px #ad0909 inset;
+  color: #fff;
+  outline: 0;
+}
+
+.active {
+  background-color: #ad0909;
+  color: #fff;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.member-trainer-buttons-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+form {
+  border-radius: 30px;
+  height: auto;
+  width: 500px;
+  position: relative;
+  top: 10%;
+  left: 50%;
+  margin-left: -150px;
+}
+
+input[type=text], input[type=password] {
+  width: 50%;
+  padding: 6px 15px;
+  margin: 8px 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: #ad0909;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  margin-top: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

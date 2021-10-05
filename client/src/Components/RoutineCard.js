@@ -9,6 +9,7 @@ export default function RoutineCard({ exercise, setMember }) {
         })
         .then(r => r.json())
         .then(data => setMember(data))
+        .then(window.location.reload())
     }
 
     return(

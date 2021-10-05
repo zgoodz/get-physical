@@ -2,7 +2,7 @@ import { useHistory } from "react-router";
 import { useState, useEffect } from "react";
 import TrainerCard from "./TrainerCard";
 
-export default function Member({ member, setMember }) {
+export default function Member({ member, setMember, classes }) {
     const history = useHistory()
     const [showTrainers, setShowTrainers] = useState([])
 
@@ -35,7 +35,7 @@ export default function Member({ member, setMember }) {
             <button>Edit Bio</button>
             <h2>My Reservations:</h2>
             <ul>
-                {member.appointments.map(appointment => <li>{appointment.location} at (insert Datetime here)</li>)}
+                {}
             </ul>
             <h2>Available Trainers</h2>
             {showTrainers.map(trainer => <TrainerCard key={trainer.id} setShowTrainers={setShowTrainers} member={member} trainer={trainer}/>)}

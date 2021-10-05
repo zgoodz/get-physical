@@ -1,13 +1,16 @@
 import { useState } from "react"
 
-export default function AppointmentCard({ appointment, member, setClasses }) {
-    const [reserveBtn, setReserveBtn] = useState(false)
+export default function AppointmentCard({ appointment, member, setClasses, setMember }) {
 
+    const filterClient = () => appointment.clients.filter(client => client.id === member.id)
 
-    console.log(appointment)
+    function potato() {
+        return filterClient().length > 0
+    }
+
+    const [reserveBtn, setReserveBtn] = useState(potato())
 
     function handleReserveClick() {
-        setReserveBtn(!reserveBtn)
 
         if(!reserveBtn) {
             fetch('/client_appointment_joins', {
@@ -21,7 +24,10 @@ export default function AppointmentCard({ appointment, member, setClasses }) {
                 })
             })
                 .then(r => r.json())
-                .then(data => setClasses(data))
+                .then(data => {
+                    setClasses(data)
+                    setReserveBtn(!reserveBtn)
+                })
         } else {
             fetch('/client_appointment', {
                 method: "DELETE",
@@ -31,8 +37,9 @@ export default function AppointmentCard({ appointment, member, setClasses }) {
             })
             .then(r => r.json())
             .then(data => {
+                console.log(data)
                 setClasses(data)
-
+                setReserveBtn(!reserveBtn)
             })
         }
     }

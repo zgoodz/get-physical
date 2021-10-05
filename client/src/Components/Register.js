@@ -100,9 +100,11 @@ export default function Register({ setMember, setTrainer }) {
 
     return (
         <div>
-            <h1>Register as:</h1>
-            <button onClick={handleMemberClick}>Member</button>
-            <button onClick={handleTrainerClick}>Trainer</button>
+            <h1>Pick one:</h1>
+            <div className="member-trainer-buttons-container">
+                <button className={memberBtn ? "member-trainer-button active" : "member-trainer-button"} onClick={handleMemberClick}>Member</button>
+                <button className={trainerBtn ? "member-trainer-button active" : "member-trainer-button"} onClick={handleTrainerClick}>Trainer</button>
+            </div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='name'>Name: </label>
                 <input onChange={handleChange} type='text' name='name' id='name' value={formData.name}></input><br/>
@@ -114,7 +116,7 @@ export default function Register({ setMember, setTrainer }) {
                 <input onChange={handleChange} type='text' name='confirm_password' id='confirm_password' value={formData.confirm_password}></input><br/>
                 <label htmoFor='user_type'>Type of User: </label>
                 {memberBtn ? <><input name='user_type' id='user_type' value='member'></input><br/></> : <><input name='user_type' id='user_type' value='trainer'></input><br/></> }
-                <button>Submit</button>
+                <button className="submit-button">Submit</button>
             </form>
 
         </div>

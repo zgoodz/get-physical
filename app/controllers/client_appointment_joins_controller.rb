@@ -24,7 +24,7 @@ class ClientAppointmentJoinsController < ApplicationController
     def destroy
         reservation = ClientAppointmentJoin.find_by(reservation_params)
         reservation.destroy
-        head :no_content
+        render json: Appointment.all
     end
 
     private
