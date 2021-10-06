@@ -8,10 +8,10 @@ export default function LoginPage({ setMember, setTrainer }) {
         <div>
             <h1 className="welcome-logo">GetPhysical</h1>
             <div className="login-buttons">
-                <Button sx={{ mx: "10px"}} variant="contained" color="secondary" href="/login">
+                <Button sx={{ mx: "10px"}} variant="contained" color="primary" href="/login">
                     LogIn
                 </Button>
-                <Button variant="contained" color="secondary" href="/register">
+                <Button variant="contained" color="primary" href="/register">
                     Register
                 </Button>
             </div>

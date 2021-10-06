@@ -12,16 +12,20 @@
 //     )
 // }
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 function LinkTab(props) {
+    let history = useHistory()
+
     return (
         <Tab
             component="a"
             onClick={(event) => {
                 event.preventDefault();
+                history.push(props.href)
             }}
             {...props}
         />
@@ -37,11 +41,11 @@ export default function NavBarMember() {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
-                <LinkTab label="Home" to="/home" />
-                <LinkTab label="Routine" to="/routine" />
-                <LinkTab label="Exercises" to="/exercises" />
-                <LinkTab label="Classes" to="/classes" />
+            <Tabs  value={value} onChange={handleChange} aria-label="nav tabs example">
+                <LinkTab label="Home" href="/home" />
+                <LinkTab label="Routine" href="/routine" />
+                <LinkTab label="Exercises" href="/exercises" />
+                <LinkTab label="Classes" href="/classes" />
             </Tabs>
         </Box>
     );

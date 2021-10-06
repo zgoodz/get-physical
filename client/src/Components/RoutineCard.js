@@ -1,3 +1,6 @@
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+
 export default function RoutineCard({ exercise, setMember }) {
 
     function handleClick() {
@@ -13,13 +16,15 @@ export default function RoutineCard({ exercise, setMember }) {
     }
 
     return(
-        <div>
-            <h2>{exercise.name}</h2>
-            <ul>
-                <li>{exercise.description}</li>
-                <li>Difficulty: {exercise.difficulty}</li>
-            </ul>
-            <button onClick={handleClick}>Delete from Routine</button>
-        </div>
+        <Grid item>
+            <Paper style={{ height: 300, width: 225 }} >
+                <h2>{exercise.name}</h2>
+                <h3>Difficulty: {exercise.difficulty}</h3>
+                <ul>
+                    <li>{exercise.description}</li>
+                </ul>
+                <button onClick={handleClick}>Delete from Routine</button>
+            </Paper>
+        </Grid>
     )
 }

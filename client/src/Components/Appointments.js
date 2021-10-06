@@ -1,6 +1,7 @@
 import AppointmentCard from "./AppointmentCard"
 import AppointmentTrainerCard from "./AppointmentTrainerCard"
 import { useState } from "react"
+import Grid from "@mui/material/Grid"
 
 export default function Appointments({ classes, setClasses, trainer, member, setMember }) {
     const [addBtn, setAddBtn] = useState(false)
@@ -64,12 +65,13 @@ export default function Appointments({ classes, setClasses, trainer, member, set
             : <></>
             }
             <h1>Upcoming Classes:</h1>
+            <Grid container>
             { member ?
             filteredClasses.length > 0 ? filteredClasses.map(c => { return <AppointmentCard key={c.id} setMember={setMember} appointment={c} setClasses={setClasses} member={member} /> }) : <h3>Loading...</h3>
             :
             filteredClasses.length > 0 ? filteredClasses.map(c => { return <AppointmentTrainerCard key={c.id} c={c} member={member} /> }) : <h3>Loading...</h3>
             }
-            
+            </Grid>
         </div>
     )
 }

@@ -1,4 +1,6 @@
 import { useState } from "react"
+import Grid from "@mui/material/Grid"
+import Paper from "@mui/material/Paper"
 
 export default function ExerciseTrainerCard({ exercise, setExercises }) {
     const [editMode, setEditMode] = useState(false)
@@ -56,28 +58,32 @@ export default function ExerciseTrainerCard({ exercise, setExercises }) {
     return(
         <div>
             {editMode ? 
-                <>
-                    <h3 style={{ color: "red" }}>Edit Mode</h3> 
-                    <h3>{exercise.name}</h3>
-                    <form onSubmit={(e) => handleSubmit(e, exercise.id)}>
-                        <label>Description: </label>
-                        <textarea rows="5" cols="50" name="description" value={editData.description} onChange={handleChange} style={{ width: "250px", height: "100px" }} /><br />
-                        <label>Difficulty: </label>
-                        <input value={editData.difficulty} name="difficulty" onChange={handleChange}></input>
-                        <button>Submit</button>
-                    </form>
-                    <button onClick={handleExitEdit}>Cancel</button>
-                </>
+                <Grid item>
+                    <Paper style={{ height: 300, width: 225 }}>
+                        <h3 style={{ color: "red" }}>Edit Mode</h3> 
+                        <h3>{exercise.name}</h3>
+                        <form onSubmit={(e) => handleSubmit(e, exercise.id)}>
+                            <label>Description: </label>
+                            <textarea rows="5" cols="50" name="description" value={editData.description} onChange={handleChange} style={{ width: "250px", height: "100px" }} /><br />
+                            <label>Difficulty: </label>
+                            <input value={editData.difficulty} name="difficulty" onChange={handleChange}></input>
+                            <button>Submit</button>
+                        </form>
+                        <button onClick={handleExitEdit}>Cancel</button>
+                    </Paper>
+                </Grid>
                 :
-                <>
-                    <h3>{exercise.name}</h3>
-                    <ul>
-                        <li>{exercise.description}</li>
-                        <li>Difficulty: {exercise.difficulty}</li>
-                    </ul>
-                    <button onClick={() => handleEditMode()}>Edit</button>
-                    <button onClick={() => handleDelete(exercise.id)}>Delete</button>
-                </>
+                <Grid item>
+                    <Paper style={{ height: 300, width: 225 }}>
+                        <h3>{exercise.name}</h3>
+                        <ul>
+                            <li>{exercise.description}</li>
+                            <li>Difficulty: {exercise.difficulty}</li>
+                        </ul>
+                        <button onClick={() => handleEditMode()}>Edit</button>
+                        <button onClick={() => handleDelete(exercise.id)}>Delete</button>
+                    </Paper>
+                </Grid>
             }
         </div>
     )

@@ -78,6 +78,10 @@ form {
   margin-left: -150px;
 }
 
+form.review-form {
+  position: none;
+}
+
 input[type=text], input[type=password] {
   width: 50%;
   padding: 6px 15px;

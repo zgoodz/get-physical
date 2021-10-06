@@ -2,6 +2,9 @@ import ExerciseCard from "./ExerciseCard";
 import ExerciseTrainerCard from "./ExerciseTrainerCard";
 import { useState } from "react"
 
+import Grid from "@mui/material/Grid"
+import Paper from "@mui/material/Paper"
+
 export default function Exercises({ exercises, member, trainer, setExercises, setMember }) {
     const [addBtn, setAddBtn] = useState(false)
     const [newExercise, setNewExercise] = useState({
@@ -67,11 +70,13 @@ export default function Exercises({ exercises, member, trainer, setExercises, se
                 :
                 <></>
             }
+            <Grid container spacing={3} justify="center">
             {member ?
                 filteredExercises.length > 0 ? filteredExercises.map(exercise => { return <ExerciseCard key={exercise.id} exercise={exercise} setExercises={setExercises} setMember={setMember} member={member} /> }) : <h3>Loading...</h3>
                 :
                 filteredExercises.length > 0 ? filteredExercises.map(exercise => { return <ExerciseTrainerCard key={exercise.id} exercise={exercise} member={member} setMember={setMember} /> }) : <h3>Loading...</h3>
             }
+            </Grid>
         </div>
     )
 }
