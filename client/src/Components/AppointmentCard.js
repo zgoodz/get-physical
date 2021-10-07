@@ -49,7 +49,7 @@ export default function AppointmentCard({ appointment, member, setClasses, setMe
     }
 
     return(
-        <Grid>
+        <Grid item>
             <Paper>
                 <Box>
                     <h2>{appointment.trainer.name}</h2>

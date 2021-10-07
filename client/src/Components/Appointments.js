@@ -92,12 +92,13 @@ export default function Appointments({ classes, setClasses, trainer, member, set
                     </Grid>
                     : <></>
                 }
+                <Grid container spacing={3} justify="center">
                 { member ?
                 filteredClasses.length > 0 ? filteredClasses.map(c => { return <AppointmentCard key={c.id} setMember={setMember} appointment={c} setClasses={setClasses} member={member} /> }) : <h3>Loading...</h3>
                 :
                 filteredClasses.length > 0 ? filteredClasses.map(c => { return <AppointmentTrainerCard key={c.id} c={c} member={member} setClasses={setClasses} /> }) : <h3>Loading...</h3>
                 }
-               
+               </Grid>
            </div>
         </Grid>
     )
