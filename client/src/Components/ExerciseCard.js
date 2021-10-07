@@ -1,6 +1,7 @@
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper"
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 
 export default function ExerciseCard({ exercise, member, setMember }) {
 
@@ -22,12 +23,12 @@ export default function ExerciseCard({ exercise, member, setMember }) {
 
     return(
             <Grid item>
-                <Paper >
+                <Paper style={{ width: "250px", height: "300px"}} >
                     <Box>
                         <h2>{exercise.name} by {exercise.trainer.name}</h2>
                             <h3>Difficulty: {exercise.difficulty}</h3>
                             <h4>{exercise.description}</h4>
-                        {member ? <button style={{ bottom: "10px" }} onClick={handleClick}>Add to routine</button> : <></>}
+                        {member ? <Button onClick={handleClick}>Add to routine</Button> : <></>}
                     </Box>
                 </Paper>
             </Grid>

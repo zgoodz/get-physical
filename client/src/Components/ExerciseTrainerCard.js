@@ -1,6 +1,8 @@
 import { useState } from "react"
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper"
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 
 export default function ExerciseTrainerCard({ exercise, setExercises }) {
     const [editMode, setEditMode] = useState(false)
@@ -58,30 +60,43 @@ export default function ExerciseTrainerCard({ exercise, setExercises }) {
     return(
         <div>
             {editMode ? 
-                <Grid item>
-                    <Paper style={{ height: 300, width: 225 }}>
-                        <h3 style={{ color: "red" }}>Edit Mode</h3> 
-                        <h3>{exercise.name}</h3>
-                        <form onSubmit={(e) => handleSubmit(e, exercise.id)}>
-                            <label>Description: </label>
-                            <textarea rows="5" cols="50" name="description" value={editData.description} onChange={handleChange} style={{ width: "250px", height: "100px" }} /><br />
-                            <label>Difficulty: </label>
-                            <input value={editData.difficulty} name="difficulty" onChange={handleChange}></input>
-                            <button>Submit</button>
-                        </form>
-                        <button onClick={handleExitEdit}>Cancel</button>
+                <Grid item > 
+                    <Paper style={{ width: "400px"}}>
+                        <Box>
+                            <h3 style={{ color: "red" }}>Edit Mode</h3> 
+                            <h3>{exercise.name}</h3>
+                            <form onSubmit={(e) => handleSubmit(e, exercise.id)}>
+                                <label>Description: </label>
+                                <textarea rows="5" cols="50" name="description" value={editData.description} onChange={handleChange} style={{ width: "250px", height: "100px" }} /><br />
+                                <br></br>
+                                <label>Difficulty: </label>
+                                <select name="difficulty" onChange={handleChange}>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <br></br>
+                                <Button>Submit</Button>
+                            </form>
+                            <Button variant="contained" onClick={handleExitEdit}>Cancel</Button>
+                        </Box>
                     </Paper>
                 </Grid>
                 :
                 <Grid item>
-                    <Paper style={{ height: 300, width: 225 }}>
+                    <Paper >
+                        <Box>
+
                         <h3>{exercise.name}</h3>
                         <ul>
                             <li>{exercise.description}</li>
                             <li>Difficulty: {exercise.difficulty}</li>
                         </ul>
-                        <button onClick={() => handleEditMode()}>Edit</button>
-                        <button onClick={() => handleDelete(exercise.id)}>Delete</button>
+                        <Button onClick={() => handleEditMode()}>Edit</Button>
+                        <Button variant="contained" onClick={() => handleDelete(exercise.id)}>Delete</Button>
+                        </Box>
                     </Paper>
                 </Grid>
             }

@@ -1,4 +1,5 @@
 import { useHistory } from "react-router";
+import Button from '@mui/material/Button'
 
 export default function Trainer({ setTrainer, trainer, exercises, classes }) {
     const history = useHistory()
@@ -29,17 +30,16 @@ export default function Trainer({ setTrainer, trainer, exercises, classes }) {
 
     return(
         <div>
-            <h1>My Profile</h1>
+            <h1>{trainer.name}'s Profile</h1>
             <h2>Bio</h2>
-            <button>Edit Bio</button>
             <h3>{trainer.bio}</h3>
-            <h2>Average Rating</h2>
+            <h2>My Average Rating</h2>
             <h3>{trainer.average_rating}</h3>
-            <h2>Reviews</h2>
+            <h2>My Reviews</h2>
             <ul>
                 {trainer.review_ratings.map(review => <li>{review.review}</li>)}
             </ul>
-            <button onClick={handleLogout}>Logout</button>
+            <Button variant="contained" onClick={handleLogout}>Logout</Button>
         </div>
     )
 }

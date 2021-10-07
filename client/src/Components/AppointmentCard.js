@@ -2,6 +2,7 @@ import { useState } from "react"
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
+import moment from "moment"
 
 export default function AppointmentCard({ appointment, member, setClasses, setMember }) {
 
@@ -54,10 +55,10 @@ export default function AppointmentCard({ appointment, member, setClasses, setMe
                     <h2>{appointment.trainer.name}</h2>
                     <ul>
                         <li>Location: {appointment.location}</li>
-                        <li>{appointment.date ? "Date: {appointment.date}" : "Date: TBD"}</li>
+                        <li>{appointment.date ? `Date: ${moment(`${appointment.date}`).format("llll")}` : "Date: TBD"}</li>
                         <li>Level: {appointment.level}</li>
                         <li>Duration: {appointment.duration} mins</li>
-                        <li>Class Capacity: {appointment.capacity}</li>
+                        <li>Capacity: {appointment.capacity} members</li>
                         <li>Cost: ${appointment.price}</li>
                     </ul>
                     {/* <button onClick={handleReserveClick}>{reserveBtn ? "Cancel Reservation" : "Reserve a Spot"}</button>

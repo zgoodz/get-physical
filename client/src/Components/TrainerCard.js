@@ -40,7 +40,7 @@ export default function TrainerCard({ trainer, member, setShowTrainers }) {
 
     return(
         <Grid item>
-            <Paper style={{ height: 400, width: 350 }}>
+            <Paper style={{ height: 350, width: 350 }}>
             <h2>{trainer.name}</h2>
             <h3>Average Rating: {trainer.average_rating}</h3>
             <ul>

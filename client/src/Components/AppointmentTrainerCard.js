@@ -1,4 +1,9 @@
 import { useState } from "react"
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
+import moment from "moment"
 
 export default function AppointmentTrainerCard({ c, setClasses}) {
     const [editMode, setEditMode] = useState(false)
@@ -6,6 +11,7 @@ export default function AppointmentTrainerCard({ c, setClasses}) {
         location: c.location,
         level: c.level,
         duration: c.duration,
+        capacity: c.capacity,
         cost: c.price
     })
 
@@ -57,40 +63,54 @@ export default function AppointmentTrainerCard({ c, setClasses}) {
     }
 
     return(
-        <div>
+        <Grid item>
             {editMode ? 
-                <>
-                    <h3 style={{ color: "red" }}>Edit Mode</h3>
-                    <form onSubmit={(e) => handleSubmit(e, c.id)}>
-                        <label>Location: </label>
-                        <input type="text" name="location" value={editData.location} onChange={handleChange}></input>
-                        <label>Level: </label>
-                        <select name="level" onChange={handleChange}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <label>Duration: </label>
-                        <input type="text" name="duration" value={editData.duration} onChange={handleChange}></input>
-                        <label>Cost: </label>
-                        <input type="text" name="cost" value={editData.cost} onChange={handleChange}></input>
-                        <button>Submit</button>
-                    </form>
-                    <button onClick={handleExitEdit}>Cancel</button>
-                </>
+                <Grid item>
+                    <Paper>
+                        <Box>
+                            <h3 style={{ color: "red" }}>Edit Mode</h3>
+                            <form onSubmit={(e) => handleSubmit(e, c.id)} style={{ left: "50%"}}>
+                                <label>Location: </label>
+                                <input type="text" name="location" value={editData.location} onChange={handleChange}></input>
+                                <br></br>
+                                <label>Level: </label>
+                                <select name="level" onChange={handleChange}>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <br></br>
+                                <label>Duration: </label>
+                                <input type="text" name="duration" value={editData.duration} onChange={handleChange}></input>
+                                <br></br>
+                                <label>capacity: </label>
+                                <input type="text" name="capacity" value={editData.cost} onChange={handleChange}></input>
+                                <br></br>
+                                <label>Cost: </label>
+                                <input type="text" name="cost" value={editData.cost} onChange={handleChange}></input>
+                                <br></br>
+                                <Button onClick={(e) => handleSubmit(e, c.id)}>Submit</Button>
+                            </form>
+                            <Button variant="contained" onClick={handleExitEdit}>Cancel</Button>
+                        </Box>
+                    </Paper>
+                </Grid>
                 :
-                <div>
-                    <h3>{c.location}</h3>
-                    <ul>
-                        <li>Level: {c.level}</li>
-                        <li>Duration: {c.duration}</li>
-                    </ul>
-                    <button onClick={() => handleEditMode()}>Edit</button>
-                    <button onClick={() => handleDelete(c.id)}>Delete</button>
-                </div>
+                <Paper style={{ height: "180px", width: "200px", justifyContent: "center"}}>
+                    <Box>
+                        <h3>{c.location}</h3>
+                        <ul>
+                            <li>{c.date ? `Date: ${moment(`${c.date}`).format("llll")}` : "Date: TBD"}</li>
+                            <li>Level: {c.level}</li>
+                            <li>Duration: {c.duration}</li>
+                        </ul>
+                        <Button onClick={() => handleEditMode()}>Edit</Button>
+                        <Button variant="contained" onClick={() => handleDelete(c.id)}>Delete</Button>
+                    </Box>
+                </Paper>
             }
-        </div>
+        </Grid>
     )
 }

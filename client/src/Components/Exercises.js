@@ -1,9 +1,10 @@
 import ExerciseCard from "./ExerciseCard";
 import ExerciseTrainerCard from "./ExerciseTrainerCard";
 import { useState } from "react"
-
+import Button from '@mui/material/Button'
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper"
+import Box from '@mui/material/Box'
 
 export default function Exercises({ exercises, member, trainer, setExercises, setMember }) {
     const [addBtn, setAddBtn] = useState(false)
@@ -52,31 +53,49 @@ export default function Exercises({ exercises, member, trainer, setExercises, se
 
 
     return(
-        <div>
-            {trainer && !addBtn ? <button onClick={handleClick}>Add Exercise</button> : <></>}
-            {addBtn ?
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <label>Name: </label>
-                        <input type="text" name="name" onChange={handleChange}></input>
-                        <label>Desription: </label>
-                        <textarea rows="5" cols="50" name="description" onChange={handleChange}></textarea>
-                        <label>Difficulty: </label>
-                        <input type="text" name="difficulty" onChange={handleChange}></input>
-                        <button>Submit</button>
-                    </form>
-                    <button onClick={handleClick}>Cancel</button>
-                </div>
-                :
-                <></>
-            }
+        <div style={{ paddingTop: "20px" }}>
+            <div style={{ paddingBottom: "20px" }}>
+                {trainer && !addBtn ? <Button variant="outlined" onClick={handleClick}>Add Exercise</Button> : <></>}
+                {addBtn ?
+                    <div>
+                        <Grid>
+                            <Paper style={{ width: "600px"}}>
+                                <Box>
+                                    <form onSubmit={handleSubmit}>
+                                        <label>Name: </label>
+                                        <input type="text" name="name" onChange={handleChange}></input>
+                                        <br></br>
+                                        <label>Desription: </label>
+                                        <textarea rows="5" cols="50" name="description" onChange={handleChange}></textarea>
+                                        <br></br>
+                                        <label>Difficulty: </label>
+                                        <select name="difficulty" onChange={handleChange}>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        <br></br>
+                                        <Button onClick={e => handleSubmit(e)}>Submit</Button>
+                                    </form>
+                                    <Button variant="contained" onClick={handleClick}>Cancel</Button>
+                                </Box>
+                            </Paper>
+                        </Grid>
+                    </div>
+                    :
+                    <></>
+                }
+            </div>
             <Grid container spacing={3} justify="center">
             {member ?
                 filteredExercises.length > 0 ? filteredExercises.map(exercise => { return <ExerciseCard key={exercise.id} exercise={exercise} setExercises={setExercises} setMember={setMember} member={member} /> }) : <h3>Loading...</h3>
                 :
-                filteredExercises.length > 0 ? filteredExercises.map(exercise => { return <ExerciseTrainerCard key={exercise.id} exercise={exercise} member={member} setMember={setMember} /> }) : <h3>Loading...</h3>
+                filteredExercises.length > 0 ? filteredExercises.map(exercise => { return <ExerciseTrainerCard key={exercise.id} exercise={exercise} member={member} setMember={setMember} setExercises={setExercises} /> }) : <h3>Loading...</h3>
             }
             </Grid>
+          
         </div>
     )
 }

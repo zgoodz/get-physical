@@ -38,7 +38,7 @@ export default function Member({ member, setMember, classes }) {
             <Grid container spacing={3} justify="center">
                 {showTrainers.map(trainer => <TrainerCard key={trainer.id} setShowTrainers={setShowTrainers} member={member} trainer={trainer}/>)}
             </Grid>
-            <Button sx={{ mx: "10px" }} variant="contained" color="primary" onClick={handleLogout}>Logout</Button>
+            <Button style={{ marginTop: "10px" }} variant="contained" color="primary" onClick={handleLogout}>Logout</Button>
         </div>
     )
 }

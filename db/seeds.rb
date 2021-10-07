@@ -33,7 +33,7 @@ Exercise.create(name: "Run", description: "As simple as it sounds, just go for a
 
 puts "Seeding Appointments..."
 
-Appointment.create(date: nil, location: "Carl Shurtz Park", price: 15, level: 2, duration: 60, capacity: 20, trainer_id: 1)
-Appointment.create(date: nil, location: "Central Park", price: 20, level: 3, duration: 45, capacity: 50, trainer_id: 2)
+Appointment.create(date: nil, location: "Carl Shurtz Park", price: 15, level: 2, duration: 60, capacity: 20, date: Time.new(2021, 10, 21, 14), trainer_id: 1)
+Appointment.create(date: nil, location: "Central Park", price: 20, level: 3, duration: 45, capacity: 50, date: Time.new(2021, 10, 22, 16), trainer_id: 2)
 
 puts "Done Seeding"
